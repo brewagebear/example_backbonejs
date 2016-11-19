@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <title>Backbone tutorials</title>
+  </head>
+  <body>
+    <script src="../lib/jquery-3.1.1.min.js" charset="utf-8"></script>
+    <script src="../lib/underscore.js" charset="utf-8"></script>
+    <script src="../lib/backbone.js" charset="utf-8"></script>
+    <script src="../lib/backbone.localstorage.js" charset="utf-8"></script>
+    <script type="text/javascript">
+        Todo = Backbone.Model.extend({
+          defaults: {
+            title:'',
+            completed: false
+          }
+        });
+         Todoscollection = Backbone.Collection.extend({
+           model: Todo,
+         });
+        var myTodo = new Todo({title:'Read the whole book', id: 2});
+        var myTodo2 = new Todo({title: 'test', id:1});
+        var todos = new Todoscollection([myTodo]);
+        var todos2 = new Todoscollection([myTodo2]);
+        var todo2 = todos.get(2);
+        var todo3 = todos2.get(1);
+        var todoCid = todos.get(todo2.cid);
+
+        console.log(todo2 === myTodo);
+        console.log(JSON.stringify(todos.toJSON()));
+        console.log(JSON.stringify(todos2.toJSON()));
+        console.log(JSON.stringify(todo2.toJSON()));
+        console.log(JSON.stringify(todo3.toJSON()));
+        console.log(JSON.stringify(myTodo.toJSON()));
+        console.log(todoCid === myTodo);
+    </script>
+  </body>
+</html>

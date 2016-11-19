@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <title>Backbone tutorials</title>
+  </head>
+  <body>
+    <script src="../lib/jquery-3.1.1.min.js" charset="utf-8"></script>
+    <script src="../lib/underscore.js" charset="utf-8"></script>
+    <script src="../lib/backbone.js" charset="utf-8"></script>
+    <script src="../lib/backbone.localstorage.js" charset="utf-8"></script>
+    <script type="text/javascript">
+      var Todo = Backbone.Model.extend({
+        defaults: {
+          title: '',
+          completed : false
+        }
+      });
+
+      var Todoscollection = Backbone.Collection.extend({
+        model: Todo,
+      });
+
+      var a  = new Todo({title: 'Go to Jamaica.'}),
+          b  = new Todo({title: 'Go to China.'}),
+          c  = new Todo({title: 'Go to Disneyland.'});
+
+      var todos = new Todoscollection([a,b]);
+      console.log("collection size:" + todos.length);
+
+      todos.add(c);
+      console.log("collection size:" + todos.length);
+
+      todos.remove([a,b]);
+      console.log("collection size:" + todos.length);
+
+      todos.remove(c);
+      console.log("collection size:" + todos.length);
+    </script>
+  </body>
+</html>

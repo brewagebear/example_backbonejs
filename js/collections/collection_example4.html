@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <title>Backbone tutorials</title>
+  </head>
+  <body>
+    <script src="../lib/jquery-3.1.1.min.js" charset="utf-8"></script>
+    <script src="../lib/underscore.js" charset="utf-8"></script>
+    <script src="../lib/backbone.js" charset="utf-8"></script>
+    <script src="../lib/backbone.localstorage.js" charset="utf-8"></script>
+    <script type="text/javascript">
+      // Todo = Backbone.Model.extend({
+      //   defaults: {
+      //     title : '',
+      //     completed : false
+      //   }
+      // });
+      // TodosCollection = Backbone.Collection.extend({
+      //   model: Todo,
+      // });
+      var TodosCollection = new Backbone.Collection();
+
+      TodosCollection.add([
+        { id : 1, title : 'go to Jamaica.', completed: false},
+        { id : 2, title : 'go to China.', completed: false},
+        { id : 3, title : 'go to Korea.', completed: true},
+      ]);
+
+      TodosCollection.on("add", function(model){
+        console.log("Added " + model.get('title'));
+      });
+      TodosCollection.on("remove", function(model){
+        console.log("Removed " + model.get('title'));
+      });
+      TodosCollection.on("change:completed", function(model){
+        console.log("Completed " + model.get('title'));
+      });
+
+      TodosCollection.set([
+        { id : 1, title : 'go to Jamaica.', completed: true},
+        { id : 2, title : 'go to China.', completed: false},
+        { id : 4, title : 'go to Disney World.', completed: false},
+      ])
+    </script>
+  </body>
+</html>

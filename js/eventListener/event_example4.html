@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <title>Backbone tutorials</title>
+  </head>
+  <body>
+    <script src="../lib/jquery-3.1.1.min.js" charset="utf-8"></script>
+    <script src="../lib/underscore.js" charset="utf-8"></script>
+    <script src="../lib/backbone.js" charset="utf-8"></script>
+    <script src="../lib/backbone.localstorage.js" charset="utf-8"></script>
+    <script type="text/javascript">
+      var TodoCounter = { counterA : 0, counterB : 0};
+
+      _.extend(TodoCounter, Backbone.Events);
+
+      var incrA = function(){
+        TodoCounter.counterA += 1;
+        TodoCounter.trigger('event');
+      };
+
+      var incrB = function(){
+        TodoCounter.counterB += 1;
+      };
+
+      TodoCounter.once('event', incrA);
+      TodoCounter.once('event', incrB);
+
+      TodoCounter.trigger('event');
+
+      console.log(TodoCounter.counterA === 1);
+      console.log(TodoCounter.counterB === 1);
+    </script>
+  </body>
+</html>
