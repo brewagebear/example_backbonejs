@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <title>Backbone tutorials</title>
+  </head>
+  <body>
+    <script src="../lib/jquery-3.1.1.min.js" charset="utf-8"></script>
+    <script src="../lib/underscore.js" charset="utf-8"></script>
+    <script src="../lib/backbone.js" charset="utf-8"></script>
+    <script src="../lib/backbone.localstorage.js" charset="utf-8"></script>
+    <script type="text/javascript">
+      var Todos = new Backbone.Collection();
+
+      Todos.add([
+        {title: 'C go to Seoul', completed: false},
+        {title: 'B go to Japan', completed: false},
+        {title: 'A go to China', completed: false}
+      ]);
+
+      var sortByAlphabet = Todos.sortBy(function(todo){
+        return todo.get("title").toLowerCase();
+      });
+
+      console.log("- Now sorted: ");
+
+      sortByAlphabet.forEach(function(model){
+        console.log(model.get('title'));
+      });
+    </script>
+  </body>
+</html>

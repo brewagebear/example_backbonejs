@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <title>Backbone tutorials</title>
+  </head>
+  <body>
+    <script src="../lib/jquery-3.1.1.min.js" charset="utf-8"></script>
+    <script src="../lib/underscore.js" charset="utf-8"></script>
+    <script src="../lib/backbone.js" charset="utf-8"></script>
+    <script src="../lib/backbone.localstorage.js" charset="utf-8"></script>
+    <script type="text/javascript">
+      var ourObj = {};
+      _.extend(ourObj, Backbone.Events);
+
+      function danging(msg) {console.log('We started ' + msg );}
+
+      ourObj.on("all", function(eventName){
+        console.log('The name of the event passed was ' + eventName);
+      });
+
+      ourObj.trigger("dance:tap", "tap danging. Yeah!");
+      ourObj.trigger("dance:break","break danging. Yeah!" );
+      ourObj.trigger("dance", "break danging. Yeah!");
+    </script>
+  </body>
+</html>

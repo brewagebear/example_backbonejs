@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <title>Backbone tutorials</title>
+  </head>
+  <body>
+    <script src="../lib/jquery-3.1.1.min.js" charset="utf-8"></script>
+    <script src="../lib/underscore.js" charset="utf-8"></script>
+    <script src="../lib/backbone.js" charset="utf-8"></script>
+    <script src="../lib/backbone.localstorage.js" charset="utf-8"></script>
+    <script type="text/javascript">
+      var ourObj = {};
+      _.extend(ourObj, Backbone.Events);
+
+      function danging(msg) {console.log('We started ' + msg );}
+
+      //네임스페이스를 가진 커스텀 이벤트 추가
+      ourObj.on("dance:tap", danging);
+      ourObj.on("dance:break", danging);
+      //커스텀 이벤트 트리거
+      ourObj.trigger("dance:tap", "tap dancing. Yeah!!");
+      ourObj.trigger("dance:break", "break dancing. Yeah!!");
+      //이벤트를 리스닝하고 있는 리스너가 없기 때문에 다음 코드는 아무것도 트리거시키지 않는다.
+      ourObj.trigger("dance", "break dancing. Yeah!!");
+    </script>
+  </body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <title>Backbone tutorials</title>
+  </head>
+  <body>
+    <script src="../lib/jquery-3.1.1.min.js" charset="utf-8"></script>
+    <script src="../lib/underscore.js" charset="utf-8"></script>
+    <script src="../lib/backbone.js" charset="utf-8"></script>
+    <script src="../lib/backbone.localstorage.js" charset="utf-8"></script>
+    <script type="text/javascript">
+      var Todos = new Backbone.Collection();
+
+      Todos.add([
+        {title: 'go to Seoul', caption: 'Korea', completed: false},
+        {title: 'go to Japan', completed: false},
+        {title: 'go to China', completed: false}
+      ]);
+
+      Todos.max(function(model){
+        return model.id;
+      }).id;
+
+      Todos.min(function(model){
+        return model.id;
+      }).id;
+        
+      var captions = Todos.pluck('caption');
+      console.log(captions);
+
+      // var Todos2 = Backbone.Collection.extend({
+      //   model: Todo,
+      //   filterById: function(ids){
+      //     return this.models.filter(
+      //       function(c){
+      //         return _.contains(ids, c.id);
+      //       })
+      //     }
+      // });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <title>Backbone tutorials</title>
+  </head>
+  <body>
+    <script src="../lib/jquery-3.1.1.min.js" charset="utf-8"></script>
+    <script src="../lib/underscore.js" charset="utf-8"></script>
+    <script src="../lib/backbone.js" charset="utf-8"></script>
+    <script src="../lib/backbone.localstorage.js" charset="utf-8"></script>
+    <script type="text/javascript">
+      var Collection = new Backbone.Collection([
+        {name: 'Tim', age : 5},
+        {name: 'Sin', age : 26},
+        {name: 'Seul', age : 55}
+      ]);
+
+      var filteredNames = Collection.chain()
+      //체이닝 시작, 컬렉션의 모델을 감싼 래퍼 반환.
+        .filter(function(item){ return item.get('age') > 10; }) //Tim이 제외된 래퍼 배열을 반환.
+        .map(function(item){ return item.get('name'); }) //남아있는 이름을 가지고 래퍼 배열 봔한.
+        .value(); // 체인을 끝내고 결과 배열 반환
+
+        console.log(filteredNames);
+    </script>
+  </body>
+</html>
