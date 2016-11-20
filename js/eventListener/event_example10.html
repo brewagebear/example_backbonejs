@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <title>Backbone tutorials</title>
+  </head>
+  <body>
+    <script src="../lib/jquery-3.1.1.min.js" charset="utf-8"></script>
+    <script src="../lib/underscore.js" charset="utf-8"></script>
+    <script src="../lib/backbone.js" charset="utf-8"></script>
+    <script src="../lib/backbone.localstorage.js" charset="utf-8"></script>
+    <script type="text/javascript">
+      var a = _.extend({}, Backbone.Events);
+      var b = _.extend({}, Backbone.Events);
+      var c = _.extend({}, Backbone.Events);
+
+      a.listenTo(b, 'anything', function(event){
+        console.log('anything happened');
+      });
+      a.listenTo(c, 'everything', function(event){
+        console.log('everything happend');
+      });
+
+      b.trigger('anything');
+      a.stopListening();
+
+      b.trigger('anything');
+      c.trigger('everything');
+    </script>
+  </body>
+</html>

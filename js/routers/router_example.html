@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <title>Backbone tutorials</title>
+  </head>
+  <body>
+    <div id="todo">
+      <input type="checkbox" />
+    </div>
+    <script src="../lib/jquery-3.1.1.min.js" charset="utf-8"></script>
+    <script src="../lib/underscore.js" charset="utf-8"></script>
+    <script src="../lib/backbone.js" charset="utf-8"></script>
+    <script src="../lib/backbone.localstorage.js" charset="utf-8"></script>
+    <script type="text/javascript">
+      var TodoRouter = Backbone.Router.extend({
+        // 맵과 라우터를 정의한다
+        routes: {
+          "about" : "showAbout",
+          // 두 URL 슬래시 사이에서 일치하는 컴포넌트를 찾을 수 있도록 해주는 ":param" 변수를 사용
+          "todo/:id" : "getTodo",
+          //searchTodos()와 같이 동일한 함수에 바인딩된 다수의 라이터를 정의할 수도 있다.
+          "search/:query" : "searchTodos",
+          //보는 바와 같이, URL은 여러개의 ":param"을 포함할 수 있다.
+          "search/:query/p:page" : "searchTodos",
+          //다음은 *기호를 사용한 예제이다. *은 모든 형태의 URL 컴포넌트와 일치될 수 있고, ":param"과 조합가능하다.
+          "todos/:id/download/*documentPath" : "downloadDocuemnt",
+          // *를 사용한 기본 라우터다. 사용자가 라우터 URL을 잘못 입력하거나 *와 일치하는 URL이 없는 경우에 사용되는 기본라우터이다.
+          "*other" : "defaultRoute",
+          //라우터 URL에는 정규식을 사용하지 않고 괄호를 사용할 수도 있다.
+          "optional(/:item)" : "optionalItem",
+          "named/optional/(y:z)":"namedOptionalItem"
+        },
+
+        showAbout:function(){
+
+        },
+        getTodo:function(id){
+          // 위의 라우터에 일치하는 id는 이 함수에 전달된다는 점을 기억하자.
+          console.log('You are trying to reach todo' +  id);
+        },
+        searchTodos: function(query,page){
+          var page_number = page || 1;
+          console.log("page Number" + page_number + " of the results for todos containing the word: " + query);
+        },
+        downloadDocuemnt: function(id, path){
+
+        },
+        defaultRoute: function(other){
+          console.log('Invaild. You attempted to reach :' + other);
+        }
+      });
+
+      var myTodoRouter = new TodoRouter();
+    </script>
+  </body>
+</html>
