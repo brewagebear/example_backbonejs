@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <title>Backbone Todo list Project</title>
+  </head>
+  <body>
+    <script src="text/template" id="item-template">
+      <div class="view">
+          <input class="toggle" type="checkbox" <%= completed ? 'checked' : '' %>>
+          <lable><%- title%></lable>
+          <button class="destroy"></button>
+      </div>
+      <input type="text" class="edit" value="<%- title %>">
+    </script>
+    <script src="text/template" id="stats-template">
+      <span id="todo-count">
+        <strong><%= remaining %></strong>
+        <%= remaining === 1 ? 'item' : 'items' %> left
+      </span>
+      <ul id="filters">
+        <il>
+          <a href="#/" class="selected">All</a>
+        </il>
+        <il>
+          <a href="#/active">Active</a>
+        </il>
+        <il>
+          <a href="#/completed">Completed</a>
+        </il>
+      </ul>
+      <% if (completed) { %>
+        <button id="clear-completed">Clear completed (<%= completed %>)</button>
+      <% } %>
+    </script>
+    <script src="lib/jquery-3.1.1.min.js" charset="utf-8"></script>
+    <script src="lib/underscore.js" charset="utf-8"></script>
+    <script src="lib/backbon.js" charset="utf-8"></script>
+    <script src="lib/backbone.localstorage.js" charset="utf-8"></script>
+    <script src="models/model.js" charset="utf-8"></script>
+    <script src="collections/collection.js" charset="utf-8"></script>
+    <script src="views/view.js" charset="utf-8"></script>
+    <script src="models/app.js" charset="utf-8"></script>
+    <script src="routers/router.js" charset="utf-8"></script>
+    <script src="app.js" charset="utf-8"></script>
+    <section id="todoapp">
+      <header id="header">
+        <h1>todo app</h1>
+        <input type="text" id="new-todo" placeholder="무엇이 필요하신가요?" autofocus>
+      </header>
+    </section>
+    <section id="main">
+      <input type="text" id="toggle-all" type="checkbox">
+      <label for="toggle-all">모든 체크가 완료되었습니다.</label>
+      <ul id="todo-list"></ul>
+    </section>
+    <div id="info">
+      <p>더블클릭으로 이 어플리케이션을 고칠수가 있습니다.</p>
+    </div>
+  </body>
+</html>
