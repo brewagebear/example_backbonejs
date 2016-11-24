@@ -30,6 +30,14 @@ var app = (function(){
           });
         }
         return this.menuView;
+      },
+      list: function(){
+        if(!this.listView){
+          this.listView = new api.views.list({
+            modle: api.todos
+          });
+        }
+        return this.listView;
       }
     };
     var Router = Backbone.Router.extend({
@@ -40,13 +48,19 @@ var app = (function(){
         "delete/:index" : "delteTodo",
         "" : "list"
       },
-      list: function(archive){},
+      list: function(archive){
+        var view = ViewsFactory.list();
+        api
+        .title(archive ? "Archive" : "Your Todos:")
+        .changeContent(view.$el);
+        view.setMode(archive ? "archive" : null).render();
+      },
       archive: function(){},
       newTodo: function(){},
       editTodo: function(){},
       delteTodo: function(){}
     });
-    
+
     api.router = new Router();
     return api;
 })();
