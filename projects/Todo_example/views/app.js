@@ -1,12 +1,12 @@
 var app = app || {};
-
+(function ($) {
+	'use strict';
 // **Appview**는 UI최상단에 위치하는 컴포넌트이다.
-app.Appview =  Backbone.View.extend({
-  //기존에 있는 HTML요소에 바ㄴ인딩한다.
+app.AppView =  Backbone.View.extend({
+  //기존에 있는 HTML요소에 바인딩한다.
   el: "#todoapp",
   //어플리케이션 하단에 있는 통계정보 출력란에 필요한 템플릿
-  statsTemplate : _.template($('#stats-Template'.html())),
-
+  statsTemplate :  _.template($('#stats-template').html()),
   //새로운 아이템이 만들어질때나, 아이템이 완료되었을때 발생하는 이벤트처리 위임.
   events: {
     'keypress #new-todo': 'createOnEnter',
@@ -29,7 +29,7 @@ app.Appview =  Backbone.View.extend({
     this.listenTo(app.Todos, 'filter', this.filterAll);
     this.listenTo(app.Todos, 'all', this.render);
 
-    app.Todo.fetch();
+    app.Todos.fetch();
   },
   render: function(){
     var completed = app.Todos.completed().length;
@@ -99,9 +99,10 @@ app.Appview =  Backbone.View.extend({
     var completed = this.allCheckbox.checked;
 
     app.Todos.each(function(todo){
-      todo.save({
-        'completed': completed
+        todo.save({
+          'completed': completed
+        });
       });
-    });
-  }
-});
+    }
+  });
+})(jQuery);
