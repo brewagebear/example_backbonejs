@@ -2,7 +2,6 @@ var app = app || {};
 (function() {
     'use strict';
     var views = app.view = app.view || {};
-
     app.Router = Backbone.Router.extend({
         routes: {
             '*home': 'homeRoute',

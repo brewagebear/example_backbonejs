@@ -1,6 +1,7 @@
 var app = app || {};
 (function() {
     'use strict';
+    //views linitalize
     var views = app.view = app.view || {};
     views.Application = Backbone.View.extend({
         initialize: function() {
@@ -17,12 +18,12 @@ var app = app || {};
 
     // make a view for each sub-page
     views.Home = Backbone.View.extend({
-     /* ... */
+      console.log("load HomeRouter");
    });
     views.About = Backbone.View.extend({
-    /* ... */
+      console.log("load AboutRouter");
   });
     views.Contact = Backbone.View.extend({
-    /* ... */
+      console.log("load contactRoute");
   });
 })();
