@@ -13,6 +13,7 @@ var app = app || {};
             this.layout = new views.Application({
                 el: 'body',
             });
+            this.layout.loadSubMenu();
         },
         homeRoute: function() {
             var view = new views.Home();
