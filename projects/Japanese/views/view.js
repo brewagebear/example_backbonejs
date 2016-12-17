@@ -14,49 +14,28 @@ var app = app || {};
             if (content) content.remove();
             this.showSpinner();
             content = this.content = view;
-            //view.test();
-
+            //content rednering
             this.$content.html(content.render().el, this.hideSpinner());
-            //this.$content.on('render', this.hideSpinner());
-        },
-        loadSubMenu: function(){
-          var slidemenu = new views.slideMenu();
-          slidemenu.render();
         },
         showSpinner: function() {
           this.$loading.show();
         },
         hideSpinner: function() {
           this.$loading.hide();
-        }
-    });
-    // make a view for each sub-page
-    views.slideMenu = Backbone.View.extend({
-      initialize: function(){
-        this.model = app.Models;
-        this.$slideMenu = this.$('#menu');
-        this.render();
-      },
-      render : function(){
-        this.$slideMenu.html(menu.get('title'));
-        //this.$el.html(this.template(this.model.toJSON())).appendTo('body');
-      }
+        },
     });
     views.Home = Backbone.View.extend({
-      initialize: function(){
-
-      },
-      test : function(){
-       console.log("홈페이지입니다.");
-     }
     });
-
     views.About = Backbone.View.extend({
-      my_template: _.template("<strong>About 페이지입니다.</strong>"),
-      //this.$el.render();
+      initialize: function(){
+        this.render();
+        alert('어바웃 페이지입니다.');
+      },
+      render: function(){
+        var template =  _.template("<strong>About page</strong>");
+      }
     });
     views.Contact = Backbone.View.extend({
-      my_template: _.template("<strong>Contact 페이지입니다.</strong>"),
-      //this.$el.render();
+      my_template: _.template("<strong>Contact page</strong>"),
     });
 })();
