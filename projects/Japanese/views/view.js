@@ -7,35 +7,47 @@ var app = app || {};
         initialize: function() {
             // caching the jQuery object on init
             this.$content = this.$('#content');
-            this.$loading = this.$('#loading');
+            //this.$loading = this.$('#loading');
         },
         setContent: function(view) {
             var content = this.content;
             if (content) content.remove();
-            this.showSpinner();
             content = this.content = view;
             //content rednering
-            this.$content.html(content.render().el, this.hideSpinner());
+            this.$content.html(content.render().el);
         },
         showSpinner: function() {
           this.$loading.show();
         },
         hideSpinner: function() {
           this.$loading.hide();
-        },
+        }
     });
     views.Home = Backbone.View.extend({
+      render: function() {
+       var template = _.template("<strong><% print('Hello ' + page); %></strong>");
+       var pageTxt = {page: "Home"};
+       var html = template(pageTxt);
+       this.$el.html(html);
+       return this;
+      }
     });
     views.About = Backbone.View.extend({
-      initialize: function(){
-        this.render();
-        alert('어바웃 페이지입니다.');
-      },
-      render: function(){
-        var template =  _.template("<strong>About page</strong>");
+      render: function() {
+       var template = _.template("<strong><% print('Hello ' + page); %></strong>");
+       var pageTxt = {page: "About"};
+       var html = template(pageTxt);
+       this.$el.html(html);
+       return this;
       }
     });
     views.Contact = Backbone.View.extend({
-      my_template: _.template("<strong>Contact page</strong>"),
+      render: function() {
+       var template = _.template("<strong><% print('Hello ' + page); %></strong>");
+       var pageTxt = {page: "Contact"};
+       var html = template(pageTxt);
+       this.$el.html(html);
+       return this;
+      }
     });
 })();

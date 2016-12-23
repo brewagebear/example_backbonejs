@@ -2,11 +2,20 @@ var app = app || {};
 (function() {
     'use strict';
     var views = app.view = app.view || {};
+
     app.Router = Backbone.Router.extend({
         routes: {
-            '*home': 'homeRoute',
             'about': 'aboutRoute',
-            'contact': 'contactRoute'
+            'contact': 'contactRoute',
+            '*home': 'homeRoute'
+        },
+        _bindRoutes: function() {
+          if (!this.routes) return;
+          this.routes = _.result(this, 'routes');
+          var route, routes = _.keys(this.routes);
+          while ((route = routes.pop()) != null) {
+            this.route(route, this.routes[route]);
+          }
         },
         initialize: function() {
             // create the layout once here
@@ -26,5 +35,7 @@ var app = app || {};
             var view = new views.Contact();
             this.layout.setContent(view);
         }
-    });
+      });
+      var router = new app.Router();
+      Backbone.history.start();
 })();
